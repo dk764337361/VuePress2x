@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "vuepress dev docs",
-    "build": "fix-memory-limit && vuepress build docs",
+    "build": "increase-memory-limit && vuepress build docs",
     "deploy": "bash deploy.sh",
     "push": "bash pushgithub.sh",
     "clean": "lerna clean && rm -rf node_modules",
