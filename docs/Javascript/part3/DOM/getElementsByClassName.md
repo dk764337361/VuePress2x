@@ -1,0 +1,46 @@
+# 根据类名获取元素(移动端推荐)
+
+- 方法：调用 document 对象的 getElementsByClassName 方法。
+- 参数：字符串类型的 class 属性值。
+- 返回值：class 属性值相同的元素对象组成的数组。
+- 浏览器兼容问题：不支持 IE8 及以下的浏览器
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 通过 class 属性值获取元素
+      // var paras = document.getElementsByClassName("para");
+      // console.log(paras);
+    </script>
+  </head>
+  <body>
+    <div id="box1">
+      <p>text1 of box1</p>
+      <p class="para">text2 of box1</p>
+      <p class="para">text3 of box1</p>
+      <p>text4 of box1</p>
+    </div>
+    <div id="box2">
+      <p>text1 of box2</p>
+      <p class="para">text2 of box2</p>
+      <p class="para">text3 of box2</p>
+      <p>text4 of box2</p>
+    </div>
+    <script>
+      // 通过 class 属性值获取元素
+      // var paras = document.getElementsByClassName("para");
+      // 获取 id 为 box1 的元素对象
+      var box1 = document.getElementById("box1");
+      // 元素对象内部也可以调用 getElementsByClassName 方法
+      var paras1 = box1.getElementsByClassName("para");
+      console.log(paras1);
+      // 兼容问题：不支持 IE 8 及以下浏览器
+    </script>
+  </body>
+</html>
+```

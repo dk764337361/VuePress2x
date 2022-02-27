@@ -1,0 +1,36 @@
+{
+  "name": "vuepress",
+  "version": "2.0.0-beta.24",
+  "description": "",
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.2.2",
+    "@vuepress/plugin-blog": "^1.9.4",
+    "@vuepress/plugin-debug": "^2.0.0-alpha.6",
+    "mini-css-extract-plugin": "^2.4.5",
+    "vuepress": "next",
+    "vuepress-vite": "2.0.0-beta.24"
+  },
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "deploy": "bash deploy.sh",
+    "push": "bash pushgithub.sh",
+    "clean": "lerna clean && rm -rf node_modules",
+    "info": "Display environment information",
+    "fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit"
+  },
+  "keywords": [],
+  "author": "daokuan",
+  "license": "ISC",
+  "dependencies": {
+    "@vue/component-compiler-utils": "^3.2.2",
+    "@vuepress/plugin-docsearch": "next",
+    "@vuepress/plugin-pwa": "next",
+    "@vuepress/plugin-pwa-popup": "2.0.0-beta.24",
+    "@vuepress/plugin-toc": "^2.0.0-beta.24",
+    "@vuepress/shared-utils": "^1.8.2",
+    "@vuepress/utils": "^2.0.0-alpha.1",
+    "increase-memory-limit": "^1.0.7",
+    "workbox-build": "6.2.4"
+  }
+}

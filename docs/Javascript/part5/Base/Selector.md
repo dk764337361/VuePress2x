@@ -1,0 +1,141 @@
+# JQuery 选择器
+
+## CSS 选择器
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      p {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" id="demo">
+      <p>段落1</p>
+      <p>段落2</p>
+      <p>段落3</p>
+      <p>段落4</p>
+      <p>段落5</p>
+      <p>段落6</p>
+      <p>段落7</p>
+      <p>段落8</p>
+      <input type="button" value="按钮1" />
+      <input type="button" value="按钮1" disabled="disabled" />
+      <input type="button" value="按钮1" />
+      <input type="text" />
+      <textarea name="" id="" cols="30" rows="10"></textarea>
+    </div>
+    <p>段落9</p>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </body>
+</html>
+```
+
+```js
+// 基础选择器
+// $("*")
+// $("p")
+// $(".box")
+// $("#demo")
+// 高级选择器
+// $(".box p").html("你好")
+
+// 表单对象属性
+// $("input:disabled").css("background-color","red")
+// $("input:enabled").css("background-color","red")
+// 表单
+// $(":input").css("background-color","red")
+$(":text").css("background-color", "red");
+```
+
+## 筛选选择器
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      p {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" id="demo">
+      <p>段落1</p>
+      <p>段落2</p>
+      <p class="para">段落3</p>
+      <p class="para">段落4</p>
+      <p class="para">段落5</p>
+      <p>段落6</p>
+      <p>段落7</p>
+      <p>段落8</p>
+    </div>
+    <script src="js/jquery-1.12.4.min.js"></script>
+  </body>
+</html>
+```
+
+- 也叫过滤选择器，jQuery 中新增的自己的选择器。
+- 用法：在基础选择器后面增加一些筛选的单词，筛选出前面选择器的选中内容中一部分。或者可以作为高级选择器的一部分。
+- 常用：
+  - \$(":first") 第一个
+  - \$(":last") 最后一个
+  - \$(":eq(index)") 下标为 index 的项
+  - \$(":gt(index)") 大于下标为 index 的项
+  - \$(":lt(index)") 小于下标为 index 的项
+  - \$(":odd") 下标为奇数的项
+  - \$(":even") 下标为偶数的项
+  - \$(":not(selector)") 去除所有与给定选择器匹配的元素
+
+```js
+// 筛选选择器
+$("p:first").css("background-color", "pink");
+$("p:last").css("background-color", "skyblue");
+$("p:eq(5)").css("background-color", "skyblue");
+$("p:gt(5)").css("background-color", "skyblue");
+$("p:lt(5)").css("background-color", "skyblue");
+$("p:odd").css("background-color", "skyblue");
+$("p:even").css("background-color", "skyblue");
+$("p:not(:eq(6))").css("background-color", "skyblue");
+$("p:not(.para)").css("background-color", "skyblue");
+```
+
+## 筛选方法
+
+
+- 也叫过滤方法，jQuery 中除了用选择器选择元素，jQuery 对象内还封装了一些对应的筛选方法。
+- 常用：
+  - $("p").first()
+  - $("p").last()
+  - $("p").eq(3) 获得其中的某个下表
+```js
+// 筛选方法
+// $("p").first().css("background-color","skyblue")
+// $("p").last().css("background-color","skyblue")
+$("p")
+  .eq(4)
+  .css("background-color", "skyblue");
+```

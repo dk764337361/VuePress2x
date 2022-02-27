@@ -1,0 +1,50 @@
+{
+    "name": "陈道宽哥哥",
+    "short_name": "陈道宽GG",
+    "description": "陈道宽GG",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#3eaf7c",
+    "icons": [
+      {
+        "src": "/images/icons/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/images/icons/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      },
+      {
+        "src": "/images/icons/favicon-32x32.png",
+        "sizes": "32x32",
+        "type": "image/png"
+      },
+      {
+        "src": "/images/icons/favicon-16x16.png",
+        "type": "image/png"
+      }
+    ],
+    "mask-icon": [
+      {
+        "src": "/images/icons/safari-pinned-tab.svg",
+        "type": "image/svg"
+      }
+    ],
+    "apple-touch-icon": [
+      {
+        "src": "/images/icons/apple-touch-icon.png",
+        "sizes": "180x180",
+        "type": "image/png"
+      }
+    ],
+    "msapplication-TileImage": [
+      {
+        "src": "/images/icons/mstile-310x310.png",
+        "sizes": "310x310",
+        "type": "image/png"
+      }
+    ]
+  }
