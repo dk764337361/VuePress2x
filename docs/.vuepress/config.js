@@ -932,14 +932,30 @@ module.exports = {
           ],
           "/Ajax/base/": [
             {
-              text: "任务一：Ajax 基础",
+              text: "Ajax 基础",
               children: [
                 "/Ajax/base/init.md",
                 "/Ajax/base/experience.md",
+                "/Ajax/base/primordial.md",
+                "/Ajax/base/Ajax-xhr.md",
+                "/Ajax/base/data-format.md",
+                "/Ajax/base/JSON-Server.md",
+                "/Ajax/base/Ajax-apply.md",
+                "/Ajax/base/data-render.md",
+                "/Ajax/base/package-Ajax.md",
               ],
             },
-            
-
+          ],
+          "/Ajax/Common-library/": [
+            {
+              text: "Ajax常用库:JQ Ajax",
+              children: [
+                "/Ajax/Common-library/jQuery-ajax.md",
+                "/Ajax/Common-library/Axios-ajax.md",
+                // "/Ajax/Common-library/jQuery-ajax-other.md",
+              ],
+            },
+          
           ],
           
         },
@@ -962,7 +978,7 @@ module.exports = {
               },
               {
                 text: "Ajax",
-                children: ["/Ajax/base/"],
+                children: ["/Ajax/base/","/Ajax/Common-library/"],
               },
               {
                 text: "前端开发准备",

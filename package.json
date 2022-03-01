@@ -11,8 +11,9 @@
     "vuepress-vite": "2.0.0-beta.24"
   },
   "scripts": {
+    
     "dev": "vuepress dev docs",
-    "build": "increase-memory-limit && vuepress build docs",
+    "build": "vuepress build docs",
     "deploy": "bash deploy.sh",
     "push": "bash pushgithub.sh",
     "clean": "lerna clean && rm -rf node_modules",
