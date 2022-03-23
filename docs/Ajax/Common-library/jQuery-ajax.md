@@ -1,4 +1,4 @@
-# JQ的AJAX的请求方法
+# JQ 内置的AJAX请求方法
 
 ## \$.ajax()
 
@@ -125,44 +125,41 @@
 </html>
 ```
 
-## put更改和delete 删除
+## put 更改和 delete 删除
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="js/jquery-1.12.4.min.js"></script>
-  <script>
-    // put 请求，更改数据
-    // $.ajax({
-    //   url: "http://localhost:3000/comments/4",  //请求ID为4的数据
-    //   type: "put",
-    //   dataType: "json",
-    //   data: {"content": "good", "postId": 2},
-    //   success: function (data) {
-    //     console.log(data)
-    //   }
-    // })
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script>
+      // put 请求，更改数据
+      // $.ajax({
+      //   url: "http://localhost:3000/comments/4",  //请求ID为4的数据
+      //   type: "put",
+      //   dataType: "json",
+      //   data: {"content": "good", "postId": 2},
+      //   success: function (data) {
+      //     console.log(data)
+      //   }
+      // })
 
-    // delete 请求，删除数据
-    $.ajax({
-      url: "http://localhost:3000/comments/5", ////请求ID为5的数据
-      type: "delete",
-      success: function (data) {
-        console.log(data)//删除数据后，返回空对象
-      }
-    })    
-  </script>
-</head>
-<body>
-  
-</body>
+      // delete 请求，删除数据
+      $.ajax({
+        url: "http://localhost:3000/comments/5", ////请求ID为5的数据
+        type: "delete",
+        success: function(data) {
+          console.log(data); //删除数据后，返回空对象
+        },
+      });
+    </script>
+  </head>
+  <body></body>
 </html>
 ```
-
 
 ## 其他方法
 
@@ -171,30 +168,30 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="js/jquery-1.12.4.min.js"></script>
-  <script>
-    // ajaxSetup() 方法，设置默认的参数
-    $.ajaxSetup({
-      url: "http://localhost:3000/users",
-      type: "post"
-    })
-    // 发送 ajax请求
-    $.ajax({
-      data: {"name": "polly", "age": 17, "class": 4}
-    })
-    $.ajax({
-      data: {"name": "james", "age": 18, "class": 4}
-    })
-  </script>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script>
+      // ajaxSetup() 方法，设置默认的参数
+      $.ajaxSetup({
+        url: "http://localhost:3000/users",
+        type: "post",
+      });
+      // 发送 ajax请求
+      $.ajax({
+        data: { name: "polly", age: 17, class: 4 },
+      });
+      $.ajax({
+        data: { name: "james", age: 18, class: 4 },
+      });
+    </script>
+  </head>
+  <body></body>
 </html>
 ```
 
-## 更多Ajax方法请查询手册
+::: tip 提示
+更多 Ajax 方法请查询手册
+:::

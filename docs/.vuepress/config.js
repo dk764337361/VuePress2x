@@ -83,7 +83,7 @@ module.exports = {
   //   process.env.DOCS_BUNDLER ??
   //   (isProd ? "@vuepress/webpack" : "@vuepress/vite"),
   // bundler: '@vuepress/bundler-vite',
-  // bundler: '@vuepress/bundler-webpack',
+  bundler: '@vuepress/bundler-webpack',
   themeConfig: {
     logo: "./images/logo.jpg",
     // repoLabel: "查看源码",
@@ -397,6 +397,112 @@ module.exports = {
                 "/FrontPrepare/csshack.md",
                 "/FrontPrepare/cutting-tool.md",
                 "/FrontPrepare/layout.md",
+              ],
+            },
+          ],
+          "/Engineering/nodeautomation/": [
+            {
+              text: "Node.js 全栈基础",
+              children: [
+                "/Engineering/nodeautomation/base/init.md",
+                "/Engineering/nodeautomation/base/module.md",
+                "/Engineering/nodeautomation/base/npm.md",
+                "/Engineering/nodeautomation/base/async.md",
+                "/Engineering/nodeautomation/base/web.md",
+              ],
+            },
+            {
+              text: "脚手架工具",
+              children: [
+                "/Engineering/nodeautomation/scaffold/init.md",
+              ],
+            },
+            {
+              text: "自动化构建",
+              children: [
+                "/Engineering/nodeautomation/Construct/readme.md",
+                "/Engineering/nodeautomation/Construct/npm_scripts.md",
+                "/Engineering/nodeautomation/Construct/style.md",
+                "/Engineering/nodeautomation/Construct/scripts.md",
+                "/Engineering/nodeautomation/Construct/lint.md",
+              ],
+            },
+            {
+              text: "Gulp",
+              children: [
+                "/Engineering/nodeautomation/Gulp/basic_usage.md",
+                "/Engineering/nodeautomation/Gulp/task_combination.md",
+                "/Engineering/nodeautomation/Gulp/working_with_files.md",
+                "/Engineering/nodeautomation/Gulp/build_style.md",
+                "/Engineering/nodeautomation/Gulp/build_script.md",
+                "/Engineering/nodeautomation/Gulp/build_html.md",
+                "/Engineering/nodeautomation/Gulp/build_image.md",
+                "/Engineering/nodeautomation/Gulp/del.md",
+                "/Engineering/nodeautomation/Gulp/browser_sync.md",
+                "/Engineering/nodeautomation/Gulp/Bootstrap.md",
+                "/Engineering/nodeautomation/Gulp/Bootstrap-Reload.md",
+                "/Engineering/nodeautomation/Gulp/gulp_in_yeoman.md",
+              ],
+            },
+          ],
+          "/Engineering/modular/": [
+            {
+              text: "ES Modules模块化开发",
+              children: [
+                "/Engineering/modular/es-module/features.md",
+                "/Engineering/modular/es-module/export.md",
+                "/Engineering/modular/es-module/import.md",
+                "/Engineering/modular/es-module/export-import.md",
+                "/Engineering/modular/es-module/polyfill.md",
+              ],
+            },
+            {
+              text: "在node中使用ES Modules",
+              children: [
+                "/Engineering/modular/es-module-in-node/esm-support.md",
+                "/Engineering/modular/es-module-in-node/cmj-support.md",
+                "/Engineering/modular/es-module-in-node/differences.md",
+                "/Engineering/modular/es-module-in-node/new-version.md",
+                "/Engineering/modular/es-module-in-node/babel.md",
+              ],
+            },
+            {
+              text: "webpack 基础",
+              children: [
+                "/Engineering/modular/webpack/webpackstart.md",
+                "/Engineering/modular/webpack/webpackCore.md",
+                "/Engineering/modular/webpack/practice.md",
+                "/Engineering/modular/webpack/webpackconfig.md",
+                "/Engineering/modular/webpack/webpackcss.md",
+                "/Engineering/modular/webpack/webpackhtml.md",
+                "/Engineering/modular/webpack/webpackjs.md",
+                "/Engineering/modular/webpack/webpackimg.md",
+                "/Engineering/modular/webpack/webpackfont.md",
+                "/Engineering/modular/webpack/webpack-AssetModules.md",
+                "/Engineering/modular/webpack/webpackdevserver.md",
+              ],
+            },
+            {
+              text: "webpack 进阶",
+              children: [
+                "/Engineering/modular/webpack/webpackenv.md",
+                "/Engineering/modular/webpack/webpackplugin.md",
+                "/Engineering/modular/webpack/webpackloader.md",
+                "/Engineering/modular/webpack/webpack-Code-Splitting.md",
+                "/Engineering/modular/webpack/webpacksourcemap.md",
+                "/Engineering/modular/webpack/Tree-Shaking.md",
+                "/Engineering/modular/webpack/webpackcache.md",
+                "/Engineering/modular/webpack/webpackresolve.md",
+                "/Engineering/modular/webpack/webpackexternals.md",
+                "/Engineering/modular/webpack/Module-Federation.md",
+              ],
+            },
+            {
+              text: "webpack 项目",
+              children: [
+                "/Engineering/modular/webpack/webpackproject.md",
+                "/Engineering/modular/webpack/webpackvue.md",
+                "/Engineering/modular/webpack/webpackreact.md",
               ],
             },
           ],
@@ -948,14 +1054,24 @@ module.exports = {
           ],
           "/Ajax/Common-library/": [
             {
-              text: "Ajax常用库:JQ Ajax",
+              text: "Ajax常用库",
               children: [
                 "/Ajax/Common-library/jQuery-ajax.md",
                 "/Ajax/Common-library/Axios-ajax.md",
-                // "/Ajax/Common-library/jQuery-ajax-other.md",
+                "/Ajax/Common-library/xhr2.md",
               ],
             },
-          
+          ],
+          "/Ajax/cross-domain/": [
+            {
+              text: "跨域和模板引擎应用",
+              children: [
+                "/Ajax/cross-domain/cross-domain.md",
+                "/Ajax/cross-domain/solution.md",
+                "/Ajax/cross-domain/case.md",
+                "/Ajax/cross-domain/artTemplate.md",
+              ],
+            },
           ],
           
         },
@@ -978,7 +1094,7 @@ module.exports = {
               },
               {
                 text: "Ajax",
-                children: ["/Ajax/base/","/Ajax/Common-library/"],
+                children: ["/Ajax/base/","/Ajax/Common-library/","/Ajax/cross-domain/"],
               },
               {
                 text: "前端开发准备",
@@ -1030,6 +1146,18 @@ module.exports = {
           {
             text: "前端工程化",
             children: [
+              {
+                text: "工程化基础、自动化工具",
+                link: "/Engineering/nodeautomation/",
+                // 该元素将一直处于激活状态
+                activeMatch: "/Engineering/nodeautomation/",
+              },
+              {
+                text: "模块化开发及规范化标准",
+                link: "/Engineering/modular/",
+                // 该元素将一直处于激活状态
+                activeMatch: "/Engineering/modular/",
+              },
               {
                 text: "VSCode",
                 link: "/Engineering/vscode/",
