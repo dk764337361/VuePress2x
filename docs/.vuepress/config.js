@@ -83,7 +83,7 @@ module.exports = {
   //   process.env.DOCS_BUNDLER ??
   //   (isProd ? "@vuepress/webpack" : "@vuepress/vite"),
   // bundler: '@vuepress/bundler-vite',
-  bundler: '@vuepress/bundler-webpack',
+  bundler: "@vuepress/bundler-webpack",
   themeConfig: {
     logo: "./images/logo.jpg",
     // repoLabel: "查看源码",
@@ -413,9 +413,7 @@ module.exports = {
             },
             {
               text: "脚手架工具",
-              children: [
-                "/Engineering/nodeautomation/scaffold/init.md",
-              ],
+              children: ["/Engineering/nodeautomation/scaffold/init.md"],
             },
             {
               text: "自动化构建",
@@ -505,6 +503,10 @@ module.exports = {
                 "/Engineering/modular/webpack/webpackreact.md",
               ],
             },
+            {
+              text: "练习题",
+              children: ["/Engineering/modular/webpack/exercise.md"],
+            },
           ],
           "/Engineering/git/": [
             {
@@ -530,7 +532,7 @@ module.exports = {
           "/mobile/mobilebase/": [
             {
               text: "一：移动端开发基础",
-              link:"/mobile/mobilebase/devbasis.md",
+              link: "/mobile/mobilebase/devbasis.md",
               children: [
                 "/mobile/mobilebase/devbasis.md",
                 "/mobile/mobilebase/viewport.md",
@@ -545,7 +547,7 @@ module.exports = {
           "/mobile/jingdong/": [
             {
               text: "二：流式布局-京东项目",
-              link:"/mobile/jingdong/flow-layout.md",
+              link: "/mobile/jingdong/flow-layout.md",
               children: [
                 "/mobile/jingdong/flow-layout.md",
                 "/mobile/jingdong/work-prepar.md",
@@ -565,7 +567,7 @@ module.exports = {
           "/mobile/xiecheng/": [
             {
               text: "三：flex布局-携程网项目",
-              link:"/mobile/xiecheng/experience.md",
+              link: "/mobile/xiecheng/experience.md",
               children: [
                 "/mobile/xiecheng/experience.md",
                 "/mobile/xiecheng/principle.md",
@@ -593,7 +595,7 @@ module.exports = {
           "/mobile/suning/": [
             {
               text: "四：rem布局-苏宁项目",
-              link:"/mobile/suning/guide.md",
+              link: "/mobile/suning/guide.md",
               children: [
                 "/mobile/suning/guide.md",
                 "/mobile/suning/unit.md",
@@ -624,7 +626,7 @@ module.exports = {
           "/mobile/alibaixiu/": [
             {
               text: "五：响应式布局-阿里百秀项目",
-              link:"/mobile/alibaixiu/readme.md",
+              link: "/mobile/alibaixiu/readme.md",
               children: [
                 "/mobile/alibaixiu/readme.md",
                 "/mobile/alibaixiu/theory.md",
@@ -660,7 +662,7 @@ module.exports = {
             // },
             {
               text: "语法",
-              link:"/Javascript/part1/grammar/zucheng.md",
+              link: "/Javascript/part1/grammar/zucheng.md",
               children: [
                 "/Javascript/part1/grammar/zucheng.md",
                 "/Javascript/part1/grammar/yufa.md",
@@ -734,17 +736,13 @@ module.exports = {
             },
             {
               text: "练手习题",
-              children: [
-                "/Javascript/part1/exercise/readme.md",
-              ],
+              children: ["/Javascript/part1/exercise/readme.md"],
             },
           ],
           "/Javascript/part2/": [
             {
               text: "一：数组",
-              children: [
-                "/Javascript/part2/array/readme.md",
-              ],
+              children: ["/Javascript/part2/array/readme.md"],
             },
             {
               text: "二：函数",
@@ -775,7 +773,6 @@ module.exports = {
                 "/Javascript/part2/object/type-of-data.md",
                 "/Javascript/part2/object/simpleData-storage.md",
                 "/Javascript/part2/object/complexData-storage.md",
-
               ],
             },
             {
@@ -790,9 +787,7 @@ module.exports = {
             },
             {
               text: "练手习题",
-              children: [
-                "/Javascript/part2/exercise/readme.md",
-              ],
+              children: ["/Javascript/part2/exercise/readme.md"],
             },
           ],
           "/Javascript/part3/": [
@@ -812,9 +807,7 @@ module.exports = {
             },
             {
               text: "DOM事件基本应用",
-              children: [
-                "/Javascript/part3/DOM/event.md",
-              ],
+              children: ["/Javascript/part3/DOM/event.md"],
             },
             {
               text: "DOM 元素element的属性操作",
@@ -899,8 +892,6 @@ module.exports = {
                 "/Javascript/part4/Snake-game/game-object.md",
                 "/Javascript/part4/Snake-game/main-code.md",
                 "/Javascript/part4/Snake-game/problem.md",
-
-
               ],
             },
             {
@@ -915,7 +906,6 @@ module.exports = {
                 "/Javascript/part4/Advanced/function-other-members.md",
                 "/Javascript/part4/Advanced/higherorder-functions.md",
                 "/Javascript/part4/Advanced/Closures.md",
-
               ],
             },
             {
@@ -1034,7 +1024,6 @@ module.exports = {
                 "/Javascript/part5/practice/carousel_3D_plus.md",
               ],
             },
-
           ],
           "/Ajax/base/": [
             {
@@ -1073,7 +1062,128 @@ module.exports = {
               ],
             },
           ],
-          
+          "/vue/part1/": [
+            {
+              text: "初识 Vue.js",
+              children: [
+                "/vue/part1/init.md",
+                "/vue/part1/install.md",
+                "/vue/part1/basegrammar.md",
+              ],
+            },
+            {
+              text: "基础指令",
+              children: [
+                "/vue/part1/Content-processing.md",
+                "/vue/part1/Attributes.md",
+                "/vue/part1/render.md",
+              ],
+            },
+            {
+              text: "事件与表单处理",
+              children: [
+                "/vue/part1/event.md",
+                "/vue/part1/form.md",
+                "/vue/part1/modifier.md",
+              ],
+            },
+            {
+              text: "进阶语法",
+              children: [
+                "/vue/part1/custom-directive.md",
+                "/vue/part1/filter.md",
+                "/vue/part1/computed.md",
+                "/vue/part1/watch.md",
+                "/vue/part1/DevTools.md",
+                "/vue/part1/life-cycle.md",
+              ],
+            },
+            {
+              text: "综合案例：TodoMVC",
+              children: [
+                "/vue/part1/todoMVC.md",
+                "/vue/part1/List-display.md",
+                "/vue/part1/Information-display.md",
+                "/vue/part1/state-switch.md",
+                "/vue/part1/Matters-added.md",
+                "/vue/part1/Matter-deletion.md",
+                "/vue/part1/Matters-Edit.md",
+                "/vue/part1/Matter-filter.md",
+                "/vue/part1/data-persistence.md",
+              ],
+            },
+          ],
+          "/vue/part2/": [
+            {
+              text: "Vue.js 组件",
+              children: [
+                "/vue/part2/Component-init.md",
+                "/vue/part2/Component-registration.md",
+                "/vue/part2/Component-communication.md",
+                "/vue/part2/Props.md",
+                "/vue/part2/Component-slot.md",
+                "/vue/part2/built-in-component.md",
+              ],
+            },
+            {
+              text: "Vue Rouner",
+              children: [
+                "/vue/part2/SPA.md",
+                "/vue/part2/Front-end-router.md",
+                "/vue/part2/vue-rouner.md",
+              ],
+            },
+            {
+              text: "Vue CLI",
+              children: [
+                "/vue/part2/Vue-Cli.md",
+              ],
+            },
+          ],
+          "/vue/part3/": [
+            {
+              text: "项目实战",
+              children: [
+                "/vue/part3/VueCli-CreatProject.md",
+                "/vue/part3/git.md",
+                "/vue/part3/Directory-Structure.md",
+                "/vue/part3/Code-Specification.md",
+                "/vue/part3/style-processing.md",
+                "/vue/part3/route-processing.md",
+                "/vue/part3/layont-processing.md",
+                "/vue/part3/Interface-handling.md",
+                "/vue/part3/Login-function.md",
+                "/vue/part3/Vuex.md",
+                "/vue/part3/Authentication.md",
+                "/vue/part3/authority-management.md",
+                "/vue/part3/Course-management.md",
+              ],
+            },
+          ],
+          "/vue/part4/": [
+            {
+              text: "项目实战",
+              children: [
+                "/vue/part4/init.md",
+              ],
+            },
+          ],
+          "/vue/part5/": [
+            {
+              text: "项目实战",
+              children: [
+                "/vue/part5/init.md",
+              ],
+            },
+          ],
+          "/vue/part6/": [
+            {
+              text: "项目实战",
+              children: [
+                "/vue/part6/init.md",
+              ],
+            },
+          ],
         },
         navbar: [
           { text: "指南", link: "/guide/" },
@@ -1090,15 +1200,55 @@ module.exports = {
               },
               {
                 text: "Javascript",
-                children: ["/Javascript/part1/", "/Javascript/part2/","/Javascript/part3/","/Javascript/part4/","/Javascript/part5/"],
+                children: [
+                  "/Javascript/part1/",
+                  "/Javascript/part2/",
+                  "/Javascript/part3/",
+                  "/Javascript/part4/",
+                  "/Javascript/part5/",
+                ],
               },
               {
                 text: "Ajax",
-                children: ["/Ajax/base/","/Ajax/Common-library/","/Ajax/cross-domain/"],
+                children: [
+                  "/Ajax/base/",
+                  "/Ajax/Common-library/",
+                  "/Ajax/cross-domain/",
+                ],
               },
               {
                 text: "前端开发准备",
                 children: ["/FrontPrepare/"],
+              },
+            ],
+          },
+          {
+            text: "前端高阶",
+            children: [
+              {
+                text: "Vue.js 框架及原理",
+                children: [
+                  "/vue/part1/",
+                  "/vue/part2/",
+                  "/vue/part3/",
+                  "/vue/part4/",
+                  "/vue/part5/",
+                  "/vue/part6/",
+                ],
+              },
+              {
+                text: "React 实战开发",
+                children: ["/html/htmlNote.md", "/html5/", "/Staticpages/"],
+              },
+              {
+                text: "小程序与游戏开发",
+                children: [
+                  "/Javascript/part1/",
+                  "/Javascript/part2/",
+                  "/Javascript/part3/",
+                  "/Javascript/part4/",
+                  "/Javascript/part5/",
+                ],
               },
             ],
           },
