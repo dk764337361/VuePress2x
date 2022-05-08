@@ -1162,9 +1162,32 @@ module.exports = {
           ],
           "/vue/part4/": [
             {
-              text: "项目实战",
+              text: "任务一：搭建项目架构与选课功能",
               children: [
-                "/vue/part4/init.md",
+                "/vue/part4/Project-Architecture.md",
+                "/vue/part4/Course-selection-function.md",
+              ],
+            },
+            {
+              text: "任务二：登录、用户功能",
+              children: [
+                "/vue/part4/Login-layout.md",
+                "/vue/part4/User-function.md",
+              ],
+            },
+            {
+              text: "任务三：学习、课程详情、课时视频功能",
+              children: [
+                "/vue/part4/learning-function.md",
+                "/vue/part4/Course-Details.md",
+                "/vue/part4/Course-video.md",
+              ],
+            },
+            {
+              text: "任务四：支付、打包优化",
+              children: [
+                "/vue/part4/Pay.md",
+                "/vue/part4/Packing-optimization.md",
               ],
             },
           ],
