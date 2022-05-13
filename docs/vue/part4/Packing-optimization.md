@@ -253,7 +253,7 @@ Toast.success('购买成功！')
 - 具体修改内容⻅示例代码，打包结果如下。
   - 从数值中可以看出，体积明显减⼩。
 
-<img src="/images/vue/426.jpg" style="width: 50%; display:inline-block; margin: 0 ;">
+<img src="/images/vue/426.jpg" style="width: 100%; display:inline-block; margin: 0 ;">
 
 ### 错误说明
 
@@ -263,7 +263,7 @@ Toast.success('购买成功！')
 
 报错示意图如下：
 
-<img src="/images/vue/427.jpg" style="width: 50%; display:inline-block; margin: 0 ;">
+<img src="/images/vue/427.jpg" style="width: 100%; display:inline-block; margin: 0 ;">
 
 
 ## CDN介绍
@@ -334,11 +334,11 @@ CDN 的全称是 Content Delivery Network，即内容分发⽹络。CDN是构建
 
 npm 安装⽅式打包结果：
 
-<img src="/images/vue/428.jpg" style="width: 50%; display:inline-block; margin: 0 ;">
+<img src="/images/vue/428.jpg" style="width: 100%; display:inline-block; margin: 0 ;">
 
 将 Vue 与 Vant 更改为 CDN 安装⽅式的打包结果：
 
-<img src="/images/vue/429.jpg" style="width: 50%; display:inline-block; margin: 0 ;">
+<img src="/images/vue/429.jpg" style="width: 100%; display:inline-block; margin: 0 ;">
 
 对⽐后可以看出，打包体积有了明显变化。
 

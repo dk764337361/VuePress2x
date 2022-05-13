@@ -529,6 +529,15 @@ module.exports = {
               children: ["/Engineering/github/readme.md"],
             },
           ],
+          "/Engineering/node/": [
+            {
+              text: "node",
+              children: [
+                "/Engineering/node/readme.md",
+                "/Engineering/node/Engineering-problems.md",
+              ],
+            },
+          ],
           "/mobile/mobilebase/": [
             {
               text: "一：移动端开发基础",
@@ -1112,6 +1121,12 @@ module.exports = {
                 "/vue/part1/data-persistence.md",
               ],
             },
+            {
+              text: "简答题",
+              children: [
+                "/vue/part1/short-answer-questions.md",
+              ],
+            },
           ],
           "/vue/part2/": [
             {
@@ -1137,6 +1152,12 @@ module.exports = {
               text: "Vue CLI",
               children: [
                 "/vue/part2/Vue-Cli.md",
+              ],
+            },
+            {
+              text: "简答题",
+              children: [
+                "/vue/part2/short-answer-questions.md",
               ],
             },
           ],
@@ -1193,9 +1214,24 @@ module.exports = {
           ],
           "/vue/part5/": [
             {
-              text: "项目实战",
+              text: "任务一：Vue.js 响应式原理",
               children: [
-                "/vue/part5/init.md",
+                "/vue/part5/Responsive-Principles.md",
+                // "/vue/part5/Design-Patterns.md",
+              ],
+            },
+            {
+              text: "任务二：Virtual DOM",
+              children: [
+                "/vue/part5/Virtual-DOM.md",
+                "/vue/part5/Snabbdom.md",
+                "/vue/part5/Source-code-analysis.md",
+              ],
+            },
+            {
+              text: "简答题",
+              children: [
+                "/vue/part5/short-answer-questions.md",
               ],
             },
           ],
@@ -1347,6 +1383,13 @@ module.exports = {
               {
                 text: "Github",
                 link: "/Engineering/github/",
+                // 该元素在当前路由路径是 /foo/ 开头时激活
+                // 支持正则表达式
+                // activeMatch: "/Engineering/github/",
+              },
+              {
+                text: "Node",
+                link: "/Engineering/node/",
                 // 该元素在当前路由路径是 /foo/ 开头时激活
                 // 支持正则表达式
                 // activeMatch: "/Engineering/github/",
