@@ -519,8 +519,12 @@ module.exports = {
           ],
           "/Engineering/vscode/": [
             {
-              text: "vscode",
-              children: ["/Engineering/git/config.md"],
+              text: "vscode 使用技巧",
+              children: ["/Engineering/vscode/config.md"],
+            },
+            {
+              text: "精选插件",
+              children: ["/Engineering/vscode/plugin.md"],
             },
           ],
           "/Engineering/github/": [
@@ -1237,9 +1241,20 @@ module.exports = {
           ],
           "/vue/part6/": [
             {
-              text: "项目实战",
+              text: "Vue3 基础",
               children: [
-                "/vue/part6/init.md",
+                "/vue/part6/Vue3-base/vue-base.md",
+              ],
+            },
+            {
+              text: "心选电商项目",
+              children: [
+                "/vue/part6/project/Project-preparation.md",
+                "/vue/part6/project/indexPage-function.md",
+                "/vue/part6/project/Product-Details&Reviews.md",
+                "/vue/part6/project/login-with-user.md",
+                "/vue/part6/project/Shopping&Orders.md",
+                "/vue/part6/project/Optimization-and-Deployment.md",
               ],
             },
           ],
@@ -1294,21 +1309,21 @@ module.exports = {
                   "/vue/part5/",
                   "/vue/part6/",
                 ],
-              },
-              {
-                text: "React 实战开发",
-                children: ["/html/htmlNote.md", "/html5/", "/Staticpages/"],
-              },
-              {
-                text: "小程序与游戏开发",
-                children: [
-                  "/Javascript/part1/",
-                  "/Javascript/part2/",
-                  "/Javascript/part3/",
-                  "/Javascript/part4/",
-                  "/Javascript/part5/",
-                ],
-              },
+              }
+              // {
+              //   text: "React 实战开发",
+              //   children: ["/html/htmlNote.md", "/html5/", "/Staticpages/"],
+              // },
+              // {
+              //   text: "小程序与游戏开发",
+              //   children: [
+              //     "/Javascript/part1/",
+              //     "/Javascript/part2/",
+              //     "/Javascript/part3/",
+              //     "/Javascript/part4/",
+              //     "/Javascript/part5/",
+              //   ],
+              // },
             ],
           },
           {

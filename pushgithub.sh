@@ -4,7 +4,7 @@ git init
 
 git add .   
 
-git commit -m “2022022222” 
+git commit -m “更新心选电商项目” 
 
 #//链接远程仓库地址，创建主分支()
 # git remote add origin https://github.com/dk764337361/myvurpress.git

@@ -155,12 +155,14 @@ vue ui
 
 在 main.js 中引⼊ Vant，即可在所有组件中使⽤任意组件，⼗分⽅便。
 
-```vue
-import Vue from 'vue' import Vant from 'vant' import 'vant/lib/index.css'
+```js
+import Vue from 'vue'
+import Vant from 'vant'
+import 'vant/lib/index.css'
 Vue.use(Vant)
 ```
 
-## 浏览器适配
+## 移动端适配
 
 - Vant 中的样式默认使⽤ px 作为单位，如果需要使⽤ rem 单位，推荐使⽤以下两个⼯具：
   - [postcss-pxtorem](https://github.com/cuth/postcss-pxtorem) 是⼀款 postcss 插件，⽤于将单位转化为 rem 。
@@ -212,7 +214,36 @@ module.exports = {
 }
 ```
 
-设置测试代码，在浏览器中查看是否能将 px ⾃动转换为 rem 。
+3. 测试页面
+
+```vue
+<!-- src\views\Home\index.vue -->
+<!-- 此页面是一级路由 -->
+<!-- 
+  {
+    path: '/',
+    name: 'home',
+    component: () => import('@/views/Home/index.vue')
+  }, 
+  -->
+<template>
+  <p>购物车首页</p>
+</template>
+
+<script setup></script>
+
+<style scoped>
+p {
+  width: 100px;
+}
+</style>
+```
+
+配置好后，需要重启热更新（npm run dev）。
+
+刷新浏览器页面，审查元素的样式查看是否已将 px 转换为 rem。
+
+<img src="/images/vue/099.gif" style="width: 100%; display:inline-block; margin: 0 ;">
 
 ### PostCSS（样式兼容-浏览器前缀）
 
@@ -232,11 +263,11 @@ PostCSS ⼀般不单独使⽤，⽽是与已有的构建⼯具进⾏集成。
 [Vue CLI](https://cli.vuejs.org/zh/guide/css.html#postcss) 内部集成了 PostCSS，并默认开启了[autoprefixer](https://github.com/postcss/autoprefixer) 插件，如果要配置⽬标浏览器，可使⽤
 package.json 的 [browserslist](https://cli.vuejs.org/zh/guide/browser-compatibility.html#browserslist) 字段。
 
-之前我们设置的 .postcssrc.js 就是 PostCSS 的配置⽂件，但需要注意的时，内部 autoprefixer 设置 browsers 配置兼容浏览器信息的写法不被推荐，应添加到`.browserlistrc.js` 中
+之前我们设置的 .postcssrc.js 就是 PostCSS 的配置⽂件，但需要注意的时，内部 autoprefixer 设置 browsers 配置兼容浏览器信息的写法不被推荐，应添加到`.browserlistrc` 中
 
 <img src="/images/vue/391.jpg" style="width: 100%; display:inline-block; margin: 0 ;">
 
-修改 .browserlistrc.js。
+根目录创建 `.browserlistrc`，并添加内容。
 
 ```
 > 1%
