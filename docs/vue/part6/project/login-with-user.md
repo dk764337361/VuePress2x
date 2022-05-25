@@ -453,7 +453,7 @@ export const getVerify = (data) =>
   })
 ```
 
-### 2. API引入与测试用户名字段
+### 2. API 引入与测试用户名字段
 
 <img src="/images/vue/121.gif" style="width: 50%; display:inline-block; margin: 0 ;">
 
@@ -672,7 +672,6 @@ export const loginByCaptcha = data => request({
 
 <img src="/images/vue/124.gif" style="width: 100%; display:inline-block; margin: 0 ;">
 
-
 ```vue
 <!--
 src\views\Login\index.vue
@@ -740,11 +739,11 @@ const state = reactive({
 + // ----------登陆处理----------
 + const SubmitHandle = async () => {
 -   // console.log('提交了表单')
-+ 
++
 +   // 用户名检测
 +   const username = state.username.trim()
 +   if (username === '') { return Toast('请检查用户名') }
-+ 
++
 +   // 为了统一存储API响应结果，使用变量保存
 +   let data = ''
 +   if (state.isPassword) {
@@ -771,3 +770,654 @@ const state = reactive({
 }
 </script>
 ```
+
+## 6. 登陆状态管理
+
+此处 Vuex4 配合 Vue3 使用
+
+### 1. 新建 Vuex 配置文件
+
+```
+src
+├─ store
+   └─ index.js  (新建)
+```
+
+```js
+import { createStore } from 'vuex'
+
+export default createStore({
+  // state相当于Vue的data
+  state() {
+    return {
+      user: window.localStorage.getItem('USER_TOKEN'),
+    }
+  },
+  // mutations用于更改state
+  mutations: {
+    setUser(state, payload) {
+      state.user = payload
+      window.localStorage.setItem('USER_TOKEN', payload)
+    },
+  },
+})
+```
+
+### 2. 在入口文件 main.js 引入
+
+```js
+......
+
+// 引入Vuex
+import store from './store'
+
+......
+
+app.use(store)
+
+......
+```
+
+### 3. 在用户登陆后把 Token 存储到本地
+
+```vue
+<!--
+src\views\Login\index.vue
+-->
+
+<script setup>
+// 引入Vuex 状态管理
+// - useStore是Vuex的一个组合式API
+import {useStore} from 'vuex'
+const store = useStore()
+
+......
+
+// ----------登陆处理----------
+const SubmitHandle = async () => {
+
+......
+
+  // 接收响应数据
+  // console.log(data)
+ + if (data.status !== 200) { return Toast('用户名或密码错误') }
+ + // 成功时，通过muation 提交新的Token信息
+ + // - 通过commit调用muation提交state
+ + store.commit('setUser', data.data.token)
+}
+</script>
+```
+
+<img src="/images/vue/125.gif" style="width: 100%; display:inline-block; margin: 0 ;">
+
+### 4. 跳转到 user 用户页
+
+```vue
+<script setup>
+......
+// 引入VueRouter
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+// ----------登陆处理----------
+const SubmitHandle = async () => {
+
+......
+
+  // 接收响应数据
+  // console.log(data)
+  if (data.status !== 200) { return Toast('用户名或密码错误') }
+  // 成功时，通过muation 提交新的Token信息
+  // - 通过commit调用muation提交state
+  store.commit('setUser', data.data.token)
+ + Toast('登陆成功')
+ + // 跳转页面
+ + router.push('/user')
+}
+
+```
+
+## 7. 页面访问权限与接口鉴权
+
+### 1. 用 meta 设置需要登陆权限的路由
+
+- meta(路由元信息)
+
+```js
+// 路由规则配置
+
+const routes = [
+
+......
+
+  {
+    path: '/order-confirm',
+    name: 'order-confirm',
+    component: () => import('@/views/OrderConfirm/index.vue'),
+    props: true,
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/order',
+    name: 'order',
+    component: () => import('@/views/Order/index.vue'),
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/order-detail/:orderId',
+    name: 'order-detail',
+    component: () => import('@/views/OrderDetail/index.vue'),
+    props: true,
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/pay',
+    name: 'pay',
+    component: () => import('@/views/Pay/index.vue'),
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: () => import('@/views/Cart/index.vue'),
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('@/views/Search/index.vue')
+  },
+  {
+    path: '/user',
+    name: 'user',
+    component: () => import('@/views/User/index.vue'),
+    meta: { requireAuth: true }
+  },
+
+  ......
+]
+
+  ......
+
+```
+
+### 2. 通过导航守卫检测登陆状态
+
+```js
+......
+
+// 引入Vuex中的组合API：useStore
+import store from '@/store'
+
+......
+
+// 通过导航守卫检测登陆状态
+// to（目标路由）
+router.beforeEach(to => {
+  // 1.对无需登陆的页面进行放行
+  if (!to.meta.requireAuth) {
+    return true
+  }
+  // 校验登陆状态
+  // 情况1：如果Token没有就做登录页跳转
+  // 情况2：用户登陆过，登陆完毕后刷新页面了（此时vuex数据被清除了，但本地token没有清除）。
+  //  然后用户并没有访问需要登陆的页面，此时不能从vuex里读取数据，且uesr里没有值。
+  if (!store.state.token || !window.localStorage.getItem('USER_TOKEN')) {
+    // 2. 如果Vuex或本地存储里都没有数据，跳转登陆页
+    // return 是to的返回值
+    return {
+      name: 'login',
+      // 3.通过重定向，跳转到登陆访问前的页面
+      //  - 比如开始点击购物车页，但此时没有登陆，登陆成功后，跳转回购物车页
+      query: {
+        redirect: to.fullPath
+      }
+    }
+  }
+})
+
+export default router
+
+```
+
+<img src="/images/vue/126.gif" style="width: 100%; display:inline-block; margin: 0 ;">
+
+### 3. 修改 index.vue 里的跳转页
+
+```vue
+
+```
+
+```vue
+<script setup>
+......
+// 引入VueRouter
+// useRouter是操作路由方法，useRoute是记录路由信息
++ import { useRouter, useRoute } from 'vue-router'
+const router = useRouter()
++ const route = useRoute()
+
+
+// ----------登陆处理----------
+const SubmitHandle = async () => {
+
+  ......
+
+  // 接收响应数据
+  // console.log(data)
+  if (data.status !== 200) { return Toast('用户名或密码错误') }
+  // 成功时，通过muation 提交新的Token信息
+  // - 通过commit调用muation提交state
+  store.commit('setUser', data.data.token)
+  Toast('登陆成功')
+  // 跳转页面
+  + // 如果有重定向就跳转重庆向页，没有就默认跳转到user页
+  + // 写法一：
+  + // router.push(route.query.redirect || '/user')
+  + // 写法二：?? 空值合并操作符
+  + router.push(route.query.redirect ?? '/user')
+}
+
+```
+
+<img src="/images/vue/127.gif" style="width: 100%; display:inline-block; margin: 0 ;">
+
+### 4.接口鉴权
+
+
+```js
+// src\utils\request.js
+
+import axios from 'axios'
+
++ // 引入 store
++ import store from '@/store'
+
+......
+
+const request = axios.create({
+  baseURL: 'https://shop.fed.lagounews.com/api'
+})
+
++ // 在请求拦截器中进行 token 设置
++ request.interceptors.request.use(config => {
++   // 获取 Token
++   const { token } = store.state
++   if (token) {
++     // 设置请求头
++     config.headers.Authorization = 'Bearer ' + token
++   }
++   return config
++ })
+
+export default request
+
+```
+
+## 8. 登录页的 Logo 图处理
+
+```js
+// src\api\index.js
+
+......
+
++ export const getLogo = () => request({
++   method: 'GET',
++   url: '/wechat/get_logo'
++ })
+
+```
+
+```vue
+<!--
+src\views\Login\index.vue
+-->
+<template>
+  <van-form @submit="SubmitHandle">
+    <img
+      class="logo"
+      :src="state.logoUrl"
+      alt=""
+    >
+    ......
+
+    </template>
+    <script setup>
+// -----------------头像处理-------------
+import { getLogo } from '@/api/index'
+
+// ----------数据处理----------
+const state = reactive({
+......
+  logoUrl: ''
+})
+
+const loadLogo = async () => {
+  const { data } = await getLogo()
+  if (data.status !== 200) {
+    return
+  }
+  state.logoUrl = data.data.logo_url
+  console.log(data)
+}
+loadLogo()
+</script>
+<style>
+.logo {
++ width:100%;
+  align-self: center;
+  margin: 70px 0 10px;
+}
+
+</style>
+
+```
+
+此时 logo API 挂了
+
+<img src="/images/vue/478.jpg" style="width: 100%; display:inline-block; margin: 0 ;">
+
+## 9. 用户页
+
+### 1. 头部
+
+<img src="/images/vue/479.jpg" style="width: 50%; display:inline-block; margin: 0 ;">
+
+1. cell 单元格 的卡片风格 示例
+
+```vue
+<van-cell-group inset>
+  <van-cell title="单元格" value="内容" />
+  <van-cell title="单元格" value="内容" label="描述信息" />
+</van-cell-group>
+```
+
+2. 基础布局与样式
+
+```vue
+<!--
+ * @author: chendaokuan
+ * @since: 2022-05-17
+ * index.vue
+-->
+<template>
+  <div class="container">
+    <!-- 头部 -->
+    <div class="header">
+      <img
+        class="logo"
+        src="https://pic1.zhimg.com/80/v2-62737246ecd625f0a78377432f475060_1440w.jpg"
+        alt=""
+      />
+      <div class="user-info">
+        <div class="user-name">
+          小吴
+        </div>
+        <div class="user-id">
+          ID:3
+        </div>
+      </div>
+      <van-icon name="setting-o" />
+    </div>
+    <!-- 主体菜单区域 -->
+    <van-cell-group inset>
+      <van-cell title="单元格" value="内容" />
+      <van-cell title="单元格" value="内容" label="描述信息" />
+      <van-cell title="单元格" value="内容" />
+      <van-cell title="单元格" value="内容" label="描述信息" />
+    </van-cell-group>
+
+    <!-- 公共底部 -->
+    <layout-footer />
+  </div>
+</template>
+
+<script setup>
+import LayoutFooter from '@/components/LayoutFooter.vue'
+</script>
+
+<style lang="scss" scoped>
+.container {
+  height: 600px;
+  padding: 15px 0;
+
+  background-color: #f6f7f9;
+
+  .header {
+    padding: 0 15px 15px;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+
+      .user-name {
+        font-size: 14px;
+        font-weight: 700;
+        padding-bottom: 10px;
+      }
+
+      .user-id {
+        font-size: 10px;
+      }
+    }
+  }
+}
+</style>
+```
+3. 径向渐变
+
+<img src="/images/vue/481.jpg" style="width: 50%; display:inline-block; margin: 0 ;">
+
+
+```vue
+<style lang="scss" scoped>
+.container {
+  height: 600px;
+  padding: 15px 0;
+ + background: radial-gradient(circle at 50% -10%,#FBC546 72%,#F6F7F9 72%) #F6F7F9 0 -300px no-repeat;
+
+ ......
+}
+</style>
+```
+
+### 2. 主体区域
+
+1. 使用 Vant 的 Grid 宫格
+
+```vue
+<van-grid>
+  <van-grid-item icon="photo-o" text="文字" />
+  <van-grid-item icon="photo-o" text="文字" />
+  <van-grid-item icon="photo-o" text="文字" />
+  <van-grid-item icon="photo-o" text="文字" />
+</van-grid>
+```
+
+2. 主体布局
+
+```vue
+<!--
+ * @author: chendaokuan
+ * @since: 2022-05-17
+ * index.vue
+-->
+<template>
+  <div class="container">
+    <!-- 头部 -->
+    ......
+
+    <!-- 主体菜单区域 -->
+    <div class="main">
+      <van-cell-group inset class="user-detail">
+        <van-cell>
+          <van-grid :border="false">
+            <van-grid-item icon="photo-o" text="1">
+              <template #icon>
+                收藏
+              </template>
+            </van-grid-item>
+            <van-grid-item icon="photo-o" text="15083">
+              <template #icon>
+                积分
+              </template>
+            </van-grid-item>
+            <van-grid-item icon="photo-o" text="555">
+              <template #icon>
+                优惠券
+              </template>
+            </van-grid-item>
+            <van-grid-item icon="photo-o" text="9999">
+              <template #icon>
+                余额
+              </template>
+            </van-grid-item>
+          </van-grid>
+        </van-cell>
+      </van-cell-group>
+      <van-cell-group inset>
+        <van-cell title="订单中心" value="查看全部" is-link to="/order" />
+        <van-grid column-num="5" :border="false">
+          <van-grid-item icon="bill-o" text="待付款" />
+          <van-grid-item icon="tosend" text="待发货" />
+          <van-grid-item icon="logistics" text="待收货" />
+          <van-grid-item icon="comment-o" text="待评价" />
+          <van-grid-item icon="sign" text="已完成" />
+        </van-grid>
+      </van-cell-group>
+    </div>
+    <!-- 公共底部 -->
+    <layout-footer />
+  </div>
+</template>
+
+<script setup>
+import LayoutFooter from '@/components/LayoutFooter.vue'
+</script>
+
+<style lang="scss" scoped>
+.container {
+  ......
+
+  // 主体
+  .van-cell-group {
+    margin-bottom: 10px;
+  }
+  // 用户账户信息卡片设置样式
+  .user-detail {
+    .van-cell {
+      padding: 0;
+    }
+  }
+}
+</style>
+```
+
+3. 如果数据没有及时加载，主体头部会出现塌陷
+
+<img src="/images/vue/480.jpg" style="width: 50%; display:inline-block; margin: 0 ;">
+
+
+```vue
+<style>
+  // 主体
+  .van-cell-group {
+    margin-bottom: 10px;
+  }
+  // 用户账户信息卡片设置样式
+  .user-detail {
+    .van-cell {
+      padding: 0;
+     + // 避免内容没有加载出来时出现短暂的塌陷
+     + min-height: 74px;
+    }
+  }
+}
+</style>
+```
+## 11. 测试用户数据
+
+### 1. API 功能封装
+```js
+// src\api\user.js
+......
+
+// 获取用户页信息
+export const getUserInfo = () => request({
+  method: 'GET',
+  url: '/user'
+})
+
+```
+
+### 2. API 引入与测试数据
+
+```vue
+<script setup>
+......
+import { getUserInfo } from '@/api/user'
+import { ref } from 'vue'
+
+// 数据处理
+const userData = ref({})
+
+// 初始化用户数据
+const initUserInfo = async () => {
+  const { data } = await getUserInfo()
+  console.log(data)
+  if (data.status !== 200) return
+  userData.value = data.data
+}
+</script>
+```
+
+<img src="/images/vue/128.gif" style="width: 100%; display:inline-block; margin: 0 ;">
+
+
+此时出现状态码为4100，原因是在不同后端进行处理的时候，有可能后端会通过http状态进行相应，来标记到底是401或其他。
+
+也有可能后端在是以400来代表相应成功，但是没通过一些状态码进行标记来处理，比如没做登陆、认证等等问题.....
+
+### 3. 用响应拦截器处理请求与失败处理
+
+```js
+// src\utils\request.js
+
+......
+
+// 引入router
++ import router from '@/router'
+
+......
+
++ // 在响应拦截器中进行失败处理
++ request.interceptors.response.use(config => {
++   // 根据我们的后端响应数据，发现响应的状态信息为 410000 时，说明用户未登录访问了相关接口
++   // 跳转登录页
++   if (config.data.status === 410000) {
++     router.push({
++       name: 'login',
++       query: {
++         redirect: router.currentRoute.fullPath
++       }
++     })
++   }
++ 
++   return config
++ })
+
+export default request
+
+```
+
+## 11. 数据处理

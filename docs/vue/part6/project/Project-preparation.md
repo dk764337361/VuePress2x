@@ -237,9 +237,13 @@ export default request
 npm run lint
 ```
 
-### 项目接口文档
+### 项目接口文档与测试账号
 
 [语雀·传送门](https://www.yuque.com/docs/share/1337b971-64aa-42b1-9814-8433e8f91bfe?#)
+
+- 测试账号：17201234567
+- 密码：qwer1234
+
 
 ## 路由页面准备
 
