@@ -14,6 +14,6 @@ git commit -m “更新心选电商项目-解决BUG”
 # git remote add origin git@github.com:dk764337361/VuePress2x.git
 
 # git push -f git@github.com:dk764337361/VuePress2x main
-git push -f git@github.com:dk764337361/VuePress2x.git main
+git push -f https://github.com/dk764337361/VuePress2x.git main
 
 git push -u origin main 
