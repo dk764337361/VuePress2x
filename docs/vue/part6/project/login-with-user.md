@@ -1024,7 +1024,6 @@ const SubmitHandle = async () => {
 
 ### 4.接口鉴权
 
-
 ```js
 // src\utils\request.js
 
@@ -1117,7 +1116,7 @@ loadLogo()
 
 <img src="/images/vue/478.jpg" style="width: 100%; display:inline-block; margin: 0 ;">
 
-## 9. 用户页
+## 9. 用户页--布局
 
 ### 1. 头部
 
@@ -1214,10 +1213,10 @@ import LayoutFooter from '@/components/LayoutFooter.vue'
 }
 </style>
 ```
+
 3. 径向渐变
 
 <img src="/images/vue/481.jpg" style="width: 50%; display:inline-block; margin: 0 ;">
-
 
 ```vue
 <style lang="scss" scoped>
@@ -1327,7 +1326,6 @@ import LayoutFooter from '@/components/LayoutFooter.vue'
 
 <img src="/images/vue/480.jpg" style="width: 50%; display:inline-block; margin: 0 ;">
 
-
 ```vue
 <style>
   // 主体
@@ -1345,9 +1343,11 @@ import LayoutFooter from '@/components/LayoutFooter.vue'
 }
 </style>
 ```
-## 11. 测试用户数据
+
+## 11. 用户页--测试用户数据
 
 ### 1. API 功能封装
+
 ```js
 // src\api\user.js
 ......
@@ -1383,10 +1383,9 @@ const initUserInfo = async () => {
 
 <img src="/images/vue/128.gif" style="width: 100%; display:inline-block; margin: 0 ;">
 
+此时出现状态码为 4100，原因是在不同后端进行处理的时候，有可能后端会通过 http 状态进行相应，来标记到底是 401 或其他。
 
-此时出现状态码为4100，原因是在不同后端进行处理的时候，有可能后端会通过http状态进行相应，来标记到底是401或其他。
-
-也有可能后端在是以400来代表相应成功，但是没通过一些状态码进行标记来处理，比如没做登陆、认证等等问题.....
+也有可能后端在是以 400 来代表相应成功，但是没通过一些状态码进行标记来处理，比如没做登陆、认证等等问题.....
 
 ### 3. 用响应拦截器处理请求与失败处理
 
@@ -1412,7 +1411,7 @@ const initUserInfo = async () => {
 +       }
 +     })
 +   }
-+ 
++
 +   return config
 + })
 
@@ -1420,4 +1419,94 @@ export default request
 
 ```
 
-## 11. 数据处理
+## 12. 用户页--数据处理
+
+<img src="/images/vue/482.jpg" style="width: 50%; display:inline-block; margin: 0 ;">
+
+通过计算属性把数据进行处理，再把数据放到页面进行渲染
+
+```vue
+<!--
+ * @author: chendaokuan
+ * @since: 2022-05-17
+ * index.vue
+-->
+<template>
+  <div class="container">
+    <!-- 头部 -->
+    <div class="header">
+      <img
+        class="logo"
+        + :src="userAvatar"
+        alt=""
+      >
+      <div class="user-info">
+        <div
+          class="user-name"
+          + v-text="usrename"
+        />
+        <div
+          class="user-id"
+          + v-text="userID"
+        />
+      </div>
+      <van-icon name="setting-o" />
+    </div>
+    <!-- 主体菜单区域 -->
+    <div class="main">
+      <van-cell-group
+        inset
+        class="user-detail"
+      >
+        <van-cell>
+          <van-grid :border="false">
+           + <van-grid-item :text="collectCount">
+              <template #icon>
+                收藏
+              </template>
+            </van-grid-item>
+            +<van-grid-item :text="integral">
+              <template #icon>
+                积分
+              </template>
+            </van-grid-item>
+           + <van-grid-item :text="couponCount">
+              <template #icon>
+                优惠券
+              </template>
+            </van-grid-item>
+           + <van-grid-item :text="now_money">
+              <template #icon>
+                余额
+              </template>
+            </van-grid-item>
+          </van-grid>
+        </van-cell>
+      </van-cell-group>
+......
+    </div>
+    <!-- 公共底部 -->
+    <layout-footer />
+  </div>
+</template>
+
+<script setup>
+......
+
+// 数据处理
+const userData = ref({})
+// 用户头像
++ const userAvatar = computed(() => userData.value?.switchUserInfo?.[0].avatar || 'https://pic1.zhimg.com/80/v2-62737246ecd625f0a78377432f475060_1440w.jpg')
++ // 用户昵称
++ const usrename = computed(() => userData.value?.nickname || '')
++ // 用户ID
++ const userID = computed(() => 'ID:' + (userData.value?.uid || ''))
++ // 用户详情信息
++ const collectCount = computed(() => userData.value?.collectCount?.toString() || '')
++ const integral = computed(() => userData.value?.integral?.toString() || '')
++ const couponCount = computed(() => userData.value?.couponCount?.toString() || '')
++ const now_money = computed(() => userData.value?.now_money?.toString() || '')
+
+......
+</script>
+```

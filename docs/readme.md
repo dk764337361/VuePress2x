@@ -6,14 +6,14 @@ heroText: 道宽的博客
 tagline: 山涧里花开花落，但人不见其花开花落，那你说这花，是不是白开又白落呢？
 # tagline: 愿我们都能跟真诚的人硬碰硬。
 actions:
-  - text: 点我开始
+  - text: 请食用左上菜单
     # link: /guide/
-    link: /mobile/xiecheng/index-initialization.md
+    link: /
     type: primary
-  # - text: 祝您新年快乐
-  #   link: /
-  #   # link: /guide/
-  #   type: secondary
+  - text: 时光传送门
+    link: https://weibo.com/u/3179500524
+    # link: /guide/
+    type: secondary
 # features:
 # - title: 日常笔记
 #   details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
