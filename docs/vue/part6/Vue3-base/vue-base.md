@@ -742,6 +742,12 @@ const handleCountChange = () => count.value++
 
 <img src="/images/vue/090.gif" style="width: 100%; display:inline-block; margin: 0 ;">
 
+## [toRaw](https://v3.cn.vuejs.org/api/basic-reactivity.html#toraw) 响应式数据转换普通数据
+
+返回 reactive 或 readonly 代理的原始对象,用于临时使用
+
+[使用案例](/vue/part6/project/Shopping&Orders.html#_3-%E7%82%B9%E5%87%BB%E5%88%97%E8%A1%A8-%E9%80%89%E5%8F%96%E6%95%B0%E6%8D%AE)
+
 ## computed
 
 计算属性用于减少视图中的复杂逻辑
