@@ -5,8 +5,6 @@ sidebarDepth: 2
 ---
 # HTML基本语法
 
-## 本页转载于[拉钩教育](https://gitee.com/lagoufed/fed-b-007/blob/master/prepare/htmlNote.md)
-
 ## Table of Contents
 
 

@@ -1,5 +1,4 @@
 # CSS2.1
-本章节为[拉钩大前端急训营](https://kaiwu.lagou.com/)学习笔记，感谢bobo与小夏
 
 ## 什么是FC？
 
